@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TVIP | Café Artesanal Gourmet - Balancán, Tabasco</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4A2C2A;
+            --secondary-color: #8B5A3C;
+            --accent-color: #C9A87A;
+            --light-color: #F8F5F0;
+            --dark-color: #2C1810;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            color: #333;
+            background-color: var(--light-color);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+        }
+        
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.98);
+        }
+        
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary-color) !important;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            color: var(--dark-color) !important;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--secondary-color) !important;
+        }
+        
+        .hero-section {
+            height: 100vh;
+            background: linear-gradient(rgba(42, 28, 26, 0.7), rgba(42, 28, 26, 0.7)), 
+                        url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--accent-color);
+            font-style: italic;
+        }
+        
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--accent-color);
+            margin: 20px auto;
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .mission-vision {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-top: 40px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 30px;
+            height: 100%;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .product-img {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .product-content {
+            padding: 25px;
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin: 15px 0;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .process-step {
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .value-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .value-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            height: 100%;
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-right: 15px;
+            width: 30px;
+            text-align: center;
+        }
+        
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            margin-top: 30px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .contact-form {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        .form-control {
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 0.2rem rgba(201, 168, 122, 0.25);
+        }
+        
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-links h5 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #999;
+        }
+        
+        .location-section {
+            background: linear-gradient(rgba(42, 28, 26, 0.8), rgba(42, 28, 26, 0.8)), 
+                        url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 100px 0;
+        }
+        
+        .location-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .location-title {
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">TVIP</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#nosotros">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#productos">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#proceso">Proceso</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#ubicacion">Ubicación</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">TVIP Café Artesanal</h1>
+                <p class="hero-subtitle">"Despierta tu alma con nuestro café"</p>
+                <p class="lead mb-4">Conectando productores locales de café artesanal con consumidores que buscan calidad, frescura y autenticidad en cada taza.</p>
+                <a href="#productos" class="btn btn-primary">Descubre Nuestros Productos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="nosotros" class="section">
+        <div class="container">
+            <h2 class="section-title">Sobre TVIP</h2>
+            <div class="about-content">
+                <p>TVIP (Tienda Virtual Ingenieros en Proceso) es una empresa dedicada a la distribución de café artesanal gourmet, ubicada en Balancán, Tabasco. Nos especializamos en conectar a productores locales con consumidores que valoran la calidad, frescura y autenticidad del café artesanal.</p>
+                
+                <div class="mission-vision">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Nuestra Misión</h4>
+                            <p>Conectar a productores de café artesanal con consumidores mediante una plataforma accesible y confiable, promoviendo calidad, comercio justo y una experiencia única en cada taza.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Nuestra Visión</h4>
+                            <p>Inspirar a las personas a disfrutar del arte del café artesanal, creando experiencias únicas en cada taza y fortaleciendo el valor del trabajo hecho a mano.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="mt-5 mb-4">Nuestros Valores</h3>
+                <div class="values-grid">
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h5>Honestidad</h5>
+                        <p>Actuamos con transparencia en cada aspecto de nuestro negocio.</p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h5>Calidad</h5>
+                        <p>Procuramos siempre ofrecer productos de la más alta calidad.</p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h5>Cooperación</h5>
+                        <p>Fomentamos el trabajo en equipo para ofrecer un mejor servicio.</p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h5>Sostenibilidad</h5>
+                        <p>Promovemos prácticas responsables con el medio ambiente y la comunidad.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="productos" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Nuestros Productos</h2>
+            <p class="text-center mb-5">Ofrecemos café 100% arábica en presentaciones cuidadosamente seleccionadas para satisfacer diferentes necesidades.</p>
+            
+            <div class="row">
+                <!-- Product 1 -->
+                <div class="col-md-4">
+                    <div class="product-card">
+                        <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1587734195503-904fca47e0e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+                        <div class="product-content">
+                            <h4>Café Artesanal 250g</h4>
+                            <p>Café 100% arábica, tostado medio, en presentación de 250g. Empacado en bolsa metalizada con válvula desgasificadora.</p>
+                            <div class="product-price">$190 MXN</div>
+                            <a href="#" class="btn btn-primary w-100">Comprar Ahora</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="col-md-4">
+                    <div class="product-card">
+                        <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1587734195503-904fca47e0e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+                        <div class="product-content">
+                            <h4>Café Artesanal 500g</h4>
+                            <p>Café 100% arábica, tostado medio, en presentación de 500g. Ideal para consumidores frecuentes de café de calidad.</p>
+                            <div class="product-price">$350 MXN</div>
+                            <a href="#" class="btn btn-primary w-100">Comprar Ahora</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="col-md-4">
+                    <div class="product-card">
+                        <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1587734195503-904fca47e0e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+                        <div class="product-content">
+                            <h4>Café Artesanal 1kg</h4>
+                            <p>Café 100% arábica, tostado medio, en presentación económica de 1kg. Perfecto para oficinas o familias.</p>
+                            <div class="product-price">$650 MXN</div>
+                            <a href="#" class="btn btn-primary w-100">Comprar Ahora</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <p>¿Necesitas una presentación diferente o cantidades mayores? <a href="#contacto">Contáctanos</a> para solicitudes especiales.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="proceso" class="section">
+        <div class="container">
+            <h2 class="section-title">Nuestro Proceso Artesanal</h2>
+            <p class="text-center mb-5">Cada grano de café TVIP pasa por un proceso cuidadoso que garantiza su calidad y frescura.</p>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h4>Recepción</h4>
+                        <p>Recibimos el café artesanal directamente de productores locales y de Chiapas, garantizando calidad y aroma desde el origen.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h4>Almacenamiento</h4>
+                        <p>Almacenamos temporalmente el café en área seca y controlada para preservar todas sus propiedades y frescura.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h4>Envasado</h4>
+                        <p>Envásamos y sellamos térmicamente el café en bolsas metalizadas con válvula unidireccional para conservar su aroma.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h4>Etiquetado</h4>
+                        <p>Etiquetamos con información completa del producto: origen, fecha de envasado y características específicas.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <h4>Empaque</h4>
+                        <p>Empacamos en cajas de cartón reforzadas para proteger el producto durante el transporte y almacenamiento.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="process-step">
+                        <div class="step-number">6</div>
+                        <h4>Distribución</h4>
+                        <p>Distribuimos a puntos de venta o directamente a los clientes con entrega a domicilio en toda la región.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="ubicacion" class="location-section">
+        <div class="container">
+            <div class="location-content">
+                <h2 class="location-title">Ubicación Estratégica</h2>
+                <p class="lead">Nuestra planta de distribución se encuentra ubicada en Balancán, Tabasco, en el corazón de la región de Los Ríos. Esta ubicación estratégica nos permite:</p>
+                
+                <div class="row mt-5">
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li class="mb-3"><i class="fas fa-check-circle me-2"></i> Acceso directo a carreteras principales</li>
+                            <li class="mb-3"><i class="fas fa-check-circle me-2"></i> Servicios públicos completos</li>
+                            <li class="mb-3"><i class="fas fa-check-circle me-2"></i> Facilidad logística para distribución</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li class="mb-3"><i class="fas fa-check-circle me-2"></i> Proximidad a productores locales</li>
+                            <li class="mb-3"><i class="fas fa-check-circle me-2"></i> Conexión con mercados regionales</li>
+                            <li class="mb-3"><i class="fas fa-check-circle me-2"></i> Infraestructura adecuada para operaciones</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <p class="mt-4">Contamos con un local de 120m² distribuido en áreas de almacenamiento, envasado, etiquetado y oficina administrativa.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            <p class="text-center mb-5">Estamos aquí para responder tus preguntas y atender tus pedidos.</p>
+            
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="contact-info">
+                        <h4 class="mb-4">Información de Contacto</h4>
+                        
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h6>Ubicación</h6>
+                                <p>Balancán, Tabasco, México</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h6>Teléfono</h6>
+                                <p>+52 916 172 0257</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h6>Email</h6>
+                                <p>CafeGourmeTVIP@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h6>Horario de Atención</h6>
+                                <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/share/1K2sz4bz5R/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com/tivp.2025/" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://x.com/TVIP872780" target="_blank"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.tiktok.com/@tvip722?_r=1&_t=ZS-91TAUqcyfaq" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-7">
+                    <div class="contact-form">
+                        <h4 class="mb-4">Envía un Mensaje</h4>
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="Nombre completo" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <input type="email" class="form-control" placeholder="Correo electrónico" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Asunto">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="5" placeholder="Mensaje" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <h5>TVIP Café Artesanal</h5>
+                    <p class="mt-3">"Despierta tu alma con nuestro café"</p>
+                    <p>Conectando productores locales con amantes del café de calidad en Balancán, Tabasco y toda la región.</p>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 footer-links">
+                    <h5>Enlaces</h5>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#nosotros">Nosotros</a></li>
+                        <li><a href="#productos">Productos</a></li>
+                        <li><a href="#proceso">Proceso</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h5>Productos</h5>
+                    <ul>
+                        <li><a href="#productos">Café 250g</a></li>
+                        <li><a href="#productos">Café 500g</a></li>
+                        <li><a href="#productos">Café 1kg</a></li>
+                        <li><a href="#contacto">Pedidos especiales</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h5>Métodos de Pago</h5>
+                    <p>Aceptamos diferentes formas de pago para tu comodidad:</p>
+                    <div class="mt-3">
+                        <i class="fab fa-cc-visa fa-2x me-2"></i>
+                        <i class="fab fa-cc-mastercard fa-2x me-2"></i>
+                        <i class="fab fa-cc-paypal fa-2x me-2"></i>
+                        <i class="fas fa-money-bill-wave fa-2x"></i>
+                    </div>
+                    
+                    <div class="social-links mt-4">
+                        <a href="https://www.facebook.com/share/1K2sz4bz5R/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/tivp.2025/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://x.com/TVIP872780" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.tiktok.com/@tvip722?_r=1&_t=ZS-91TAUqcyfaq" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 TVIP - Tienda Virtual Ingenieros en Proceso. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                document.querySelector('.navbar').classList.add('scrolled');
+            } else {
+                document.querySelector('.navbar').classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
